@@ -221,16 +221,32 @@ return {
         disable = {},
       },
     }
+    require("neo-tree").setup({
+      window = {
+        mappings = {
+          ["P"] = function(state)
+            local node = state.tree:get_node()
+            require("neo-tree.ui.renderer").focus_node(state, node:get_parent_id())
+          end
+        }
+      }
+    })
     vim.api.nvim_exec([[
       autocmd FocusLost * silent! w
     ]], false)
-    vim.o.encoding = "UTF-8"
-    vim.o.autowriteall = true
-    vim.api.nvim_command("cnoremap <C-v> <C-r>+")
-    vim.wo.signcolumn = "yes"
     vim.cmd('set indentexpr=')
     vim.cmd('filetype indent off')
+    vim.cmd('set nofoldenable')
+    vim.cmd('set foldcolumn=0')
+    vim.cmd([[autocmd FocusLost * silent! wall]])
+    vim.api.nvim_command("cnoremap <C-v> <C-r>+")
     vim.opt.autoindent = true
     vim.opt.smartindent = true
+    vim.wo.signcolumn = "yes"
+    vim.wo.wrap = true
+    vim.wo.linebreak = true
+    vim.o.encoding = "UTF-8"
+    vim.o.autowriteall = true
   end,
 }
+
