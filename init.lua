@@ -191,6 +191,12 @@ return {
       filesystem = {
         window = {
           width = 20,
+          mappings = {
+            ["P"] = function(state)
+              local node = state.tree:get_node()
+              require("neo-tree.ui.renderer").focus_node(state, node:get_parent_id())
+            end
+          }
         },
         filtered_items = {
           visible = true,
@@ -221,16 +227,6 @@ return {
         disable = {},
       },
     }
-    require("neo-tree").setup({
-      window = {
-        mappings = {
-          ["P"] = function(state)
-            local node = state.tree:get_node()
-            require("neo-tree.ui.renderer").focus_node(state, node:get_parent_id())
-          end
-        }
-      }
-    })
     vim.api.nvim_exec([[
       autocmd FocusLost * silent! w
     ]], false)
