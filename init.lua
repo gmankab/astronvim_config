@@ -227,6 +227,7 @@ return {
         disable = {},
       },
     }
+    vim.o.updatetime = 1000
     vim.api.nvim_exec([[
       autocmd FocusLost * silent! w
     ]], false)
@@ -235,6 +236,7 @@ return {
     vim.cmd('set nofoldenable')
     vim.cmd('set foldcolumn=0')
     vim.cmd([[autocmd FocusLost * silent! wall]])
+    vim.cmd([[autocmd CursorHold,CursorHoldI * silent! wall]])
     vim.api.nvim_command("cnoremap <C-v> <C-r>+")
     vim.opt.autoindent = true
     vim.opt.smartindent = true
