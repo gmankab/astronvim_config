@@ -48,7 +48,7 @@ return {
     formatting = {
       -- control auto formatting on save
       format_on_save = {
-        enabled = false,     -- enable or disable format on save globally
+        enabled = false,    -- enable or disable format on save globally
         allow_filetypes = { -- enable format on save for specified filetypes only
           -- "go",
         },
@@ -154,39 +154,6 @@ return {
         silent = true,
       }
     )
-    vim.api.nvim_set_keymap(
-      'n',
-      '<leader>s',
-      ':tabnew ~/.config/nvim/lua/user/init.lua<CR>',
-      {
-        noremap = true,
-        silent = true,
-      }
-    )
-    vim.api.nvim_set_keymap(
-      'n',
-      '<leader>tt',
-      ':term<CR>',
-      {
-        noremap = true,
-        silent = true,
-      }
-    )
-    vim.api.nvim_set_keymap(
-      'n',
-      '<leader>s',
-      ':tabnew ~/.config/nvim/lua/user/init.lua<CR>',
-      {
-        noremap = true,
-        silent = true,
-      }
-    )
-    vim.api.nvim_set_keymap(
-      'n', 'q', ':bd<CR>', {
-        noremap = true,
-        silent = true,
-      }
-    )
     require("neo-tree").setup({
       filesystem = {
         window = {
@@ -227,10 +194,88 @@ return {
         disable = {},
       },
     }
+    vim.api.nvim_set_keymap(
+      'i',
+      '<C-v>',
+      '<C-r>*',
+      {
+        noremap = true
+      }
+    )
+    vim.api.nvim_set_keymap(
+      't',
+      '<C-v>',
+      '<C-\\><C-n>"+pi',
+      {
+        noremap = true
+      }
+    )
+    vim.api.nvim_set_keymap(
+      'n',
+      '<leader>tt',
+      ':term<CR>',
+      {
+        noremap = true,
+        silent = true,
+      }
+    )
+    vim.api.nvim_set_keymap(
+      'n',
+      '<leader>ar',
+      ':w<CR>:term python main.py<CR>',
+      {
+        noremap = true,
+        silent = true,
+      }
+    )
+    vim.api.nvim_set_keymap(
+      'n',
+      '<leader>as',
+      ':w<CR>:term exec $SHELL start.sh<CR>', {
+        noremap = true,
+        silent = true,
+      }
+    )
+    vim.api.nvim_set_keymap(
+      'n',
+      '<leader>v',
+      ':Neotree %:p:h<CR>',
+      {
+        noremap = true,
+        silent = true,
+      }
+    )
+    vim.api.nvim_set_keymap(
+      'n',
+      '<C-k>',
+      ':bnext<CR>',
+      {
+        noremap = true,
+        silent = true,
+      }
+    )
+    vim.api.nvim_set_keymap(
+      'n',
+      '<C-j>',
+      ':bNext<CR>',
+      {
+        noremap = true,
+        silent = true
+      }
+    )
+    require("which-key").register({
+      ["<leader>tt"] = "open terminal",
+      ["<leader>tr"] = "run main.py and shell",
+      ["<leader>ts"] = "run start.sh and shell",
+      ["<leader>ar"] = "run main.py",
+      ["<leader>as"] = "run start.sh",
+      ["<leader>v"] = "neotree with opened dir",
+    })
     vim.o.updatetime = 1000
     vim.api.nvim_exec([[
       autocmd FocusLost * silent! w
     ]], false)
+    vim.cmd('set wrap')
     vim.cmd('set indentexpr=')
     vim.cmd('filetype indent off')
     vim.cmd('set nofoldenable')
@@ -241,10 +286,10 @@ return {
     vim.opt.autoindent = true
     vim.opt.smartindent = true
     vim.wo.signcolumn = "yes"
-    vim.wo.wrap = true
     vim.wo.linebreak = true
     vim.o.encoding = "UTF-8"
     vim.o.autowriteall = true
   end,
 }
 
+-- 11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
